@@ -15,10 +15,8 @@ public class Documentacion extends ResultadoTarea {
 
 
     @Override
-    public String mostrarResultado(){
-        return "Resultado: \"" + getIdentificador() + "\" de duración " +
-                getNumeroEsperadoHoras() + " horas, (" + getResultadoInternoExterno() + ")"
-                + "\n\tFormato:           " + formato
+    public String mostrarResultadoEspecifico(){
+        return  "\n\tFormato:           " + formato
                 + "\n\tNúmero de Páginas: " + numPaginas
                 + "\n\tEspacio en disco:  " + espacioEnDisco;
     }

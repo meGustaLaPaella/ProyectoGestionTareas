@@ -12,11 +12,10 @@ public class Programa extends ResultadoTarea {
         this.numLineas=numLineas;
         this.numModulos=numModulos;
     }
+
     @Override
-    public String mostrarResultado(){
-        return "Resultado: \"" + getIdentificador() + "\" de duración " +
-                getNumeroEsperadoHoras() + " horas, (" + getResultadoInternoExterno() + ")"
-                + "\n\tLenguaje:          " + lenguajeEmpleado
+    public String mostrarResultadoEspecifico(){
+        return "\n\tLenguaje:          " + lenguajeEmpleado
                 + "\n\tNumero de Lineas:  " + numLineas
                 + "\n\tNumero de Módulos: " + numModulos;
     }

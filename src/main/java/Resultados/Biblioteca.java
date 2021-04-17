@@ -14,10 +14,8 @@ public class Biblioteca extends ResultadoTarea {
     }
 
     @Override
-    public String mostrarResultado(){
-        return  "Resultado: " + getIdentificador() +
-                " de duración " + getNumeroEsperadoHoras() + " horas, (" + getResultadoInternoExterno() + ")"
-                + "\n\tLenguaje:          " + lenguajeEmpleado
+    public String mostrarResultadoEspecifico(){
+        return  "\n\tLenguaje:          " + lenguajeEmpleado
                 + "\n\tNumero de Lineas:  " + numLineas
                 + "\n\tNumero de Módulos: " + numModulos;
     }

@@ -1,15 +1,16 @@
+import Clases.Persona;
+import Clases.Proyecto;
+import Clases.Tarea;
 import Resultados.*;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class MainGestor {
     private static String nombreProyecto;
     private static Proyecto proyecto;
     static Scanner sc =new Scanner(System.in);
-
-
-
 
 
     public static void gestor(){
@@ -43,7 +44,7 @@ public class MainGestor {
         nuevaPersona.setNombre(leerString());
         System.out.println("Introduce el Correo:");
         nuevaPersona.setCorreo(leerString());
-        System.out.println("#############\nPersona Creada\n#############");
+        System.out.println("#############\nClases.Persona Creada\n#############");
         proyecto.anyadirPersona(nuevaPersona);
         return nuevaPersona;
     }
@@ -112,6 +113,13 @@ public class MainGestor {
                         lenguaje, numLineas, numModulos));
                 break;
         }
+        System.out.println("Añade una etiqueta o \"exit\" para terminar:");
+        String etiqueta=leerString();
+        while(etiqueta.compareTo("exit")!=0){
+            tarea.añadirEtiqueta(etiqueta);
+            System.out.println("Etiqueta añadida, añade otra o \"exit\" para terminar:");
+            etiqueta=leerString();
+        }
         proyecto.anyadirTarea(tarea);
         System.out.println("\nResultado añadido.");
 
@@ -136,6 +144,23 @@ public class MainGestor {
             e.printStackTrace();
         }
     }
+    public static String mostrarPersonasAsignadas(Tarea tarea){
+        String personas = "";
+        ArrayList<Persona> listaPersonas=tarea.getPersonasAsignadas();
+        if(listaPersonas.size()>0) {
+            for (Persona persona : listaPersonas) {
+                personas += "\n" + persona.getNombre();
+            }
+        } else personas="No hay personas asignadas";
+        return personas;
+    }
+    public static String mostrarTarea(Tarea tarea){
+        return "Título de la tarea: " + tarea.getTitulo()
+                + "\nResponsable: " + tarea.getResponsable()
+                + "\nPersonas asignadas: \n" + mostrarPersonasAsignadas(tarea)
+                + "\n" + (tarea.isEsFinalizada()?"Clases.Tarea finalizada.":"Clases.Tarea sin finalizar")
+                + "\n" + tarea.getResultado().mostrarResultadoEspecifico() +"\n";
+    }
     public static void finalizarTarea(){
         System.out.println("Introduce el titulo de la tarea que quieres finalizar: ");
         String tituloTarea= leerString();
@@ -144,11 +169,11 @@ public class MainGestor {
             if(tarea.getTitulo().compareTo(tituloTarea)==0){
                 encontrada=true;
                 tarea.finalizarTarea();
-                System.out.println("Tarea finalizada satisfactoriamente.");
+                System.out.println("Clases.Tarea finalizada satisfactoriamente.");
                 break;
             }
         }
-        if(!encontrada) System.out.println("Tarea no encontrada");
+        if(!encontrada) System.out.println("Clases.Tarea no encontrada");
 
 
     }
@@ -163,8 +188,10 @@ public class MainGestor {
         Tarea tarea= proyecto.buscarTarea(titulo);
         if(opcion==1){
             tarea.anyadirPersonasAsignadas(persona);
+            persona.añadirTareaAPersona(tarea);
         } else {
             tarea.eliminarPersonasAsignadas(persona);
+            persona.eliminarTareaDePersona(tarea);
         }
     }
     public static void listarPersonas(){
@@ -174,18 +201,21 @@ public class MainGestor {
     }
     public static void listarTareas(){
         for(Tarea tarea:proyecto.getListaTareas()){
-            System.out.println(tarea.mostrarTarea());
+            System.out.println(mostrarTarea(tarea));
         }
     }
     public static String leerString(){
         return sc.next();
     }
+
     public static int leerInt(){
         return sc.nextInt();
     }
+
     public static Double leerDouble(){
         return sc.nextDouble();
     }
+
     public static void crearProyecto(){
         proyecto= new Proyecto();
         establecerNombreProyecto(proyecto);
@@ -197,7 +227,7 @@ public class MainGestor {
         System.out.println(String.format("Nombre establecido, proyecto \"{0}\" creado.", nombreProyecto));
     }
     public static void pedirNombreTarea(){
-        System.out.println("Introduce el nombre de la Tarea: ");
+        System.out.println("Introduce el nombre de la Clases.Tarea: ");
 
     }
     public static void pedirNombrePersona(){

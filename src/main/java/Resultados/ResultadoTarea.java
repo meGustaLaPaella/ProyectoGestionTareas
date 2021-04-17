@@ -23,5 +23,11 @@ public abstract class ResultadoTarea {
         return resultadoInternoExterno;
     }
 
-    public abstract String mostrarResultado();
+    public String mostrarResultado(){
+        return "Resultado: ID=\"" + getIdentificador() + "\" de duración " +
+                getNumeroEsperadoHoras() + " horas, (" + getResultadoInternoExterno() + ")"
+                + mostrarResultadoEspecifico();
+    }
+
+    public abstract String mostrarResultadoEspecifico();
 }

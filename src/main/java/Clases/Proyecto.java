@@ -1,9 +1,12 @@
+package Clases;
+
 import java.util.ArrayList;
 //Con HashSet mejor
 public class Proyecto {
     String nombreProyecto;
     private ArrayList<Tarea> listaTareas;
     private ArrayList<Persona> listaPersonas;
+
 
     public Proyecto() {
         this.listaTareas = new ArrayList<>();
@@ -18,7 +21,7 @@ public class Proyecto {
         this.listaPersonas.add(persona);
     }
 
-    public void anyadirPersonaATarea(Persona persona, Tarea tarea){
+    public void anyadirPersonaATarea(Persona persona, Tarea tarea) {
         for(Tarea t:listaTareas){
             if(t.equals(tarea)){
                 tarea.anyadirPersonasAsignadas(persona);

@@ -16,10 +16,8 @@ public class PaginaWeb extends ResultadoTarea{
 
 
     @Override
-    public String mostrarResultado(){
-        return "Resultado: ID=\"" + getIdentificador() + "\" de duración " +
-                getNumeroEsperadoHoras() + " horas, (" + getResultadoInternoExterno() + ")"
-                + "\n\tTipo:     " + estaticaDinamica
+    public String mostrarResultadoEspecifico(){
+        return "\n\tTipo:     " + estaticaDinamica
                 + "\n\tLenguaje: " + lenguaje
                 + "\n\tBack end: " + backend;
     }
